@@ -1,0 +1,3 @@
+import {createClient} from '@supabase/supabase-js';
+export function db(){const url=process.env.NEXT_PUBLIC_SUPABASE_URL;const key=process.env.SUPABASE_SERVICE_ROLE_KEY;if(!url||!key)throw new Error('Configure Supabase environment variables');return createClient(url,key,{auth:{persistSession:false}})}
+export async function admin(req:Request){const auth=req.headers.get('authorization')||'';const token=auth.startsWith('Bearer ')?auth.slice(7):'';if(!token)return false;const {data,error}=await db().auth.getUser(token);return !error&&!!data.user&&data.user.email?.toLowerCase()===process.env.ADMIN_EMAIL?.toLowerCase()}

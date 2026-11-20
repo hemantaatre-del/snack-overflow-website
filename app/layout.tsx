@@ -1,0 +1,1 @@
+import './style.css';export const metadata={title:'Snack Overflow | Crunch Into Happiness',description:'Shop healthy chips, banana wafers, khakhra and roasted chana in Nashik. Order on WhatsApp.'};export default function Layout({children}:{children:React.ReactNode}){return <html lang="en"><body>{children}</body></html>}
